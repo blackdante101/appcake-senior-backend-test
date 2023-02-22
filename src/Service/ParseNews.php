@@ -34,13 +34,11 @@ class ParseNews {
         $content = $response->getContent();
         // $content = '{"id":521583, "name":"symfony-docs", ...}'
         $content = $response->toArray();
-        $x = 0;
+        
         foreach($content['articles'] as $article){
             $entityManager = $this->doctrine->getManager();
             $feed = new NewsFeed();
-            if($x == 3){
-                die;
-            }
+            
             $dataExists = $this->doctrine->getRepository(NewsFeed::class)->findOneBy([
                 'title' => $article['title'], // Replace with the actual property name and value to check
             ]);
@@ -61,8 +59,6 @@ class ParseNews {
 
             $entityManager->persist($feed);
             $entityManager->flush();
-
-            $x++;
 
             // $this->bus->dispatch(new ParseNewsMessage("einus"));
         }
