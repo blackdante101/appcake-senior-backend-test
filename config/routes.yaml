@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+# index:
+#     path: /
+#     controller: App\Controller\NewsFeedController::index
+news:
+    path: /news
+    controller: App\Controller\NewsFeedController::index
+news_delete:
+    path: /news/delete/{id}
+    controller: App\Controller\NewsFeedController::deleteArticle
